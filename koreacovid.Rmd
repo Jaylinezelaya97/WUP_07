@@ -85,3 +85,4 @@ Chisq table shows the P-value is 0.001 Fisher exact test says P value is .0009 t
 
 ## Conclusions
 
+In conclusion there are more females who stayed alive than males. and dying is independent of sex.
