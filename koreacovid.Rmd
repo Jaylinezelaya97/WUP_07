@@ -1,6 +1,6 @@
 ---
 title: "Initial Korean covid 19"
-author: "your name here"
+author: "Jayline Zelaya"
 date: "todays date"
 output:
   html_document: default
@@ -25,26 +25,53 @@ Some of the data was uncoded for sex - sex must be just male or female
 77 of the data entries were coded sex  as blank, so we omit these.
 state of a patient must be died or alive - we adjust that as well   
   
-# Your Question - Is dying independent of sex?
-
-
-
-
-
-
-## Graphical results - use ggplot commands to do this  
-
+```{r}
+structure(kRdata)
+```
 
 
   
+# Your Question - Is dying independent of sex?
+
+$H_0$ Dying is not independent of sex
+
+$H_A$ Dying is independent of sex
+
+## METHOD
+
+Sex is categorical data and result is categorical data, therefore we use cat~cat helper file.
 
 
 
+## Graphical results - use ggplot commands to do this 
+
+```{r}
+dd2 <- kRdata %>% group_by(result,Sex) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
 
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=Sex,y=count,fill=result))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=Sex,y=prcnt*100,fill=result)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+
+This bar chart shows of females 55% who were infected with covid are still alive and over 35% are dead. Of males who were infected with covid slightly over 40% are alive and over 60% are dead.
   
 ## Numerical results
 
+```{r}
+table1 <- xtabs(~result + Sex, data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+This table shows the percentage of males and females who lived and died.
 
 ## Inferential results 
 
