@@ -71,12 +71,17 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-This table shows the percentage of males and females who lived and died.
+This table shows the percentage of females alive is 98.7 and males is 97% of those who live and 1.4% of females infected died and 3% of males infected died .
 
 ## Inferential results 
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
-
+Chisq table shows the P-value is 0.001 Fisher exact test says P value is .0009 therefore we reject the null hypothesis.
 
 ## Conclusions
 
